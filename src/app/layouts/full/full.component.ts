@@ -58,6 +58,14 @@ export class FullComponent {
       roles:["ADMINISTRATEUR","MANAGEUR"]
 
     },
+
+    {
+      link: "/produits",
+      icon: "disc",
+      menu: "Produits",
+      roles:["ADMINISTRATEUR","MANAGEUR"]
+
+    },
   ]
 
 

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Créer un produit</h2>
+<form (ngSubmit)="onSubmit()" #produitForm="ngForm">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Libellé Produit</mat-label>
+      <input matInput required [(ngModel)]="produit.libelleProduit" name="libelleProduit">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Prix</mat-label>
+      <input matInput required type="number" [(ngModel)]="produit.prix" name="prix">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Catégorie</mat-label>
+      <mat-select [(ngModel)]="produit.categorie" name="categorie" required>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category.libelle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button type="button" (click)="onCancel()">Annuler</button>
+    <button mat-button type="submit" color="primary">Créer</button>
+  </mat-dialog-actions>
+</form>

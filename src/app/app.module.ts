@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatSelectModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

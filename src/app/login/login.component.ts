@@ -36,19 +36,25 @@ export class LoginComponent implements OnInit {
    * Login function triggered by the form submission.
    */
   onSubmit(): void {
+    if (!this.form.email || !this.form.password) {
+      this.errorMessage = 'Veuillez entrer un email et un mot de passe valides.';
+      this.isLoginFailed = true;
+      return;
+    }
+  
     const { email, password } = this.form;
-
+  
     this.authService.login(email, password).subscribe({
       next: data => {
         console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveRefreshToken(data.refreshToken);
         this.tokenStorage.saveUser(data.user);
-
+  
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['home']);  
+        this.router.navigate(['home']);
       },
       error: err => {
         this.errorMessage = err.error.message || 'Connexion échouée';
@@ -56,7 +62,7 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
+  
   /**
    * Reload the page after login to update UI components.
    */

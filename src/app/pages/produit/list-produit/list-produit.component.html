@@ -1,0 +1,33 @@
+<div>
+    <h2>Tous les Produits</h2>
+
+    <button mat-button (click)="openDialog()">Ajouter un produit</button>
+    <button mat-icon-button (click)="openEditDialogModif(produit)">
+    <mat-icon>edit</mat-icon>
+    </button>
+    <div *ngIf="produits.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Libellé</th>
+            <th>Prix</th>
+            <th>Catégorie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produit of produits">
+            <td>{{ produit.idProduit }}</td>
+            <td>{{ produit.libelleProduit }}</td>
+            <td>{{ produit.prix | currency }}</td>
+            <td>{{ produit.categorie?.libelle }}</td> <!-- Assurez-vous que "nomCategorie" est une propriété de votre modèle Categorie -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="produits.length === 0">
+      <p>Aucun produit disponible.</p>
+    </div>
+  </div>
+  
