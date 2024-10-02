@@ -84,4 +84,4 @@ Cela créera un répertoire dist/ contenant les fichiers optimisés pour la prod
     sudo systemctl restart nginx
 
 ## Auteurs
-- Votre Nom - jgbedevi
+- GBEDEVI Yawa Jacqueline - jgbedevi
