@@ -34,7 +34,7 @@ const routes: Routes = [
     component: FullComponent, 
     canActivate: [AuthGuard], // Protection par guard
     children: [
-      { path: 'home', component: DashboardComponent }, // Enfant route protégée
+      { path: 'home', component: DashboardComponent }, 
       { 
         path: '', 
         loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
