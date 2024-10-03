@@ -8,8 +8,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -25,8 +23,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
     MatSelectModule

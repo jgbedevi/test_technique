@@ -32,6 +32,7 @@ export class TokenStorageService {
    */
   public getToken(): string | null {
     return sessionStorage.getItem(TOKEN_KEY);
+
   }
 
   /**
@@ -71,7 +72,13 @@ export class TokenStorageService {
   }
 
   getUserRoles(): string[] {
-    const user = JSON.parse(localStorage.getItem('auth-user') || '{}');
-    return user.roles || [];
+    const user = this.getUser();
+    if (user.role && user.role.libelle) {
+      return [user.role.libelle]; // Retourner un tableau avec le libellé du rôle
+    }
+    return []; // Retourner un tableau vide si aucun rôle n'est trouvé
   }
+  
+
+
 }

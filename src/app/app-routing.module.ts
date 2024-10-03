@@ -30,15 +30,14 @@ const routes: Routes = [
 
   // Route principale après authentification
   {
-    path: 'page', 
+    path: 'home', 
     component: FullComponent, 
     canActivate: [AuthGuard], // Protection par guard
     children: [
-      { path: 'home', component: DashboardComponent }, 
+      { path: 'dashboard', component: DashboardComponent }, 
       { 
-        path: '', 
-        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
-        canActivate: [AuthGuard]
+        path: 'page', 
+        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
       }
     ]
   },

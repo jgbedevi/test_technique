@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { TokenStorageService } from '../tokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
 
   private apiRoot: string = `http://localhost:8080/api/auth`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
 
   /**
    * Login method to authenticate the user.
@@ -20,8 +21,15 @@ export class AuthService {
     const loginPayload = { email: email, password: password };
     return this.http.post(`${this.apiRoot}/login`, loginPayload, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    });
+    }).pipe(
+      tap((response: any) => {
+        if (response.user) {
+          this.tokenStorage.saveUser(response.user); 
+        }
+      })
+    );
   }
+
 
   /**
    * Logout method to disconnect the user.

@@ -28,33 +28,37 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      const user = this.tokenStorage.getUser();
+      this.roles = user.role ? [user.role.libelle] : []; 
     }
   }
 
-  /**
-   * Login function triggered by the form submission.
-   */
+  
   onSubmit(): void {
     if (!this.form.email || !this.form.password) {
       this.errorMessage = 'Veuillez entrer un email et un mot de passe valides.';
       this.isLoginFailed = true;
       return;
     }
-  
+
     const { email, password } = this.form;
-  
+
     this.authService.login(email, password).subscribe({
       next: data => {
-        console.log(data);
+        console.log('Données de connexion :', data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveRefreshToken(data.refreshToken);
-        this.tokenStorage.saveUser(data.user);
-  
+        this.tokenStorage.saveUser(data.user); 
+
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/page/home']);
+
+        const user = this.tokenStorage.getUser();
+        this.roles = user.role ? [user.role.libelle] : []; 
+
+        console.log('Rôles de l\'utilisateur :', this.roles); 
+
+        this.router.navigate(['/home/dashboard']); 
       },
       error: err => {
         this.errorMessage = err.error.message || 'Connexion échouée';
@@ -62,12 +66,8 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
-  /**
-   * Reload the page after login to update UI components.
-   */
+
   reloadPage(): void {
     window.location.reload();
   }
 }
-
