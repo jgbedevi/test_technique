@@ -10,7 +10,7 @@ import { Produit } from '../../models/produitModel';
 })
 export class ProduitService {
 
-  private apiUrl = 'http://localhost:8080/produits'; 
+  private apiUrl = 'http://localhost:8080/api/produits'; 
   constructor(private http: HttpClient) {}
 
   getProduits(): Observable<Produit[]> {

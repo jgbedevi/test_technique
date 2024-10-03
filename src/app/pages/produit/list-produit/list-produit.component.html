@@ -20,7 +20,7 @@
             <td>{{ produit.idProduit }}</td>
             <td>{{ produit.libelleProduit }}</td>
             <td>{{ produit.prix | currency }}</td>
-            <td>{{ produit.categorie?.libelle }}</td> <!-- Assurez-vous que "nomCategorie" est une propriété de votre modèle Categorie -->
+            <td>{{ produit.categorie.libelle }}</td> <!-- Assurez-vous que "nomCategorie" est une propriété de votre modèle Categorie -->
           </tr>
         </tbody>
       </table>
